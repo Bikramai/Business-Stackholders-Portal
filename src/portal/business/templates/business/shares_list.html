@@ -1,0 +1,84 @@
+{% extends 'core/base_dashboard.html' %}
+{% load static %}
+
+{% block base_title %} Shares {% endblock %}
+{% block page_heading %} Shares {% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+            <div class="card-body">
+                {% if object_list %}
+
+                <div class="table-responsive">
+                    <table class="table table-centered table-nowrap table-hover">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Project</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Value</th>
+                            <th scope="col">Percentage Equity</th>
+                            <th scope="col">Sell Equity</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for object in object_list %}
+                        <tr>
+                            <td>
+                                <p class="mb-0">
+                                    <b><a href="#">{{ object.project }}</a></b>
+                                </p>
+                            </td>
+                            <td>
+                                <p class="mb-0">
+                                    <b><a href="#">{{ object.status }}</a></b>
+                                </p>
+                            </td>
+
+                            <td>
+                                <p class="mb-0">
+                                    <b><a href="#">{{ object.value }}</a>
+                                    </b>
+                            </td>     <td>
+                                <p class="mb-0">
+                                    <b><a href="#">{{ object.percentage_equity }}</a>
+                                    </b>
+                            </td>
+                            <td>
+                                <p class="mb-0">
+                                    <b><a href="#">{{ object.sell_equity }}</a>
+                                    </b>
+                            </td>
+
+                            <td>
+                                <a href="{% url 'business:shares_update' object.pk object.project.id %}">
+                                    <b><i class="fa fa-edit"></i> </b>
+                                </a>
+                                <a href="{% url 'business:shares_delete' object.pk object.project.id %}" class="text-danger">
+                                    <b><i class="fa fa-trash"></i> </b>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+                {% else %}
+                <p class="text-danger">
+                    <b><i class="fa fa-exclamation-circle"></i> No Project found.</b>
+                </p>
+                {% endif %}
+
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}

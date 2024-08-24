@@ -1,0 +1,119 @@
+{% extends 'core/base_dashboard.html' %}
+{% load widget_tweaks%}
+{% load static %}
+
+{% block base_title %} Projects {% endblock %}
+{% block page_heading %} Project {% endblock %}
+
+{% block content %}
+             <div class="col-lg-12">
+                <div class=" mb-2">
+                    <div class="container video-content">
+                        <div class="row">
+                            <div class="col-md-12  text-center mt-20">
+                                <form method="GET" class="hero__form v4 filter listing-filter">
+                                    <div class="row">
+                                        <div class="col-lg-7 col-md-12 ">
+                                            <div class="input-search ">
+                                                {% render_field form.name class='form-control'%}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-12 pr-0">
+                                            {% render_field form.category class='form-control' %}
+                                        </div>
+
+
+                                        <div class="col-lg-2 col-sm-12">
+                                            <button class="btn btn-success" type="submit">Search</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+
+            <div class="card-body">
+                {% if object_list %}
+
+                <div class="table-responsive">
+                    <table class="table table-centered table-nowrap table-hover">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Website</th>
+                            <th scope="col">Sell Shares</th>
+                            <th scope="col">Calculate Profit</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for object in object_list %}
+                        <tr>
+                            <td>
+                                <p class="mb-0">
+                                    <a href="{% url 'business:project_detail' object.pk %}"><b>{{ object.name }}</b></a>
+                                </p>
+                            </td>
+                            <td>
+                                <p class="mb-0">
+                                    <b>{{ object.category }}</b>
+                                </p>
+                            </td>
+
+                            <td>
+                                <p class="mb-0">
+                                    <b><a href="{{object.website}}" target="_blank">{{ object.website }}</a>
+                                    </b>
+                            </td>
+                            <p class="mb-0">
+                                <td>
+                            <p class="mb-0">
+                                <a href="{% url 'business:project_share' object.pk %}"
+                                   class="btn btn-success btn-sm">Sell</a>
+                                </td>
+                            <td>
+                            <p class="mb-0">
+                                <a href="{% url 'business:money_flow' object.pk %}"
+                                   class="btn btn-success btn-sm">calculate</a>
+                                </td>
+
+
+                            <td>
+                                <a href="{% url 'business:project_detail' object.pk %}">
+                                    <b><i class="fa fa-eye"></i> </b>
+                                </a>
+                                <a href="{% url 'business:project_update' object.pk %}">
+                                    <b><i class="fa fa-edit"></i> </b>
+                                </a>
+                                <a href="{% url 'business:project_delete' object.pk %}" class="text-danger">
+                                    <b><i class="fa fa-trash"></i> </b>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+                {% else %}
+                <p class="text-danger">
+                    <b><i class="fa fa-exclamation-circle"></i> No Project found.</b>
+                </p>
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block header %}{% endblock header %}
+{% block content %}
+
+
+    <!-- Search Form Starts Here -->
+    <div class="search__form__wrapper">
+        <div class="form__inner">
+            <form class="search__form">
+                <div class="form-group">
+                    <input type="text" class="form-control form--control" placeholder="Search Here...">
+                    <button type="submit" class="cmn--btn btn">Search</button>
+                </div>
+            </form>
+            <button class="btn-close btn-close-white"></button>
+        </div>
+    </div>
+    <section class="banner-section overflow-hidden">
+        <div class="container">
+            <div class="banner__wrapper d-flex align-items-center justify-content-between">
+                <div class="banner__content">
+                    <h1 class="title">Best Hyip Investment Platform</h1>
+                    <p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero hyip investment pandding</p>
+                </div>
+                <div class="banner__thumb d-none d-lg-block">
+                    <div class="shapes">
+                        <img src="{% static 'website/images/banner/sm-coin.png' %}" alt="banner" class="shape shape3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content%}

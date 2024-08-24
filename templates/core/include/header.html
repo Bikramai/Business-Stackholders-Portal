@@ -1,0 +1,68 @@
+{% load static %}
+    <div class="preloader">
+        <div class="preinnner">
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="ring"></div>
+        </div>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Header Section Starts Here -->
+    <div class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header__top__wrapper d-flex flex-wrap align-items-center justify-content-center justify-content-md-between text-center">
+                    <ul class="contacts d-flex flex-wrap justify-content-center">
+                        <li><a href="https://template.viserlab.com/cdn-cgi/l/email-protection#6004050d0f20070d01090c4e030f0d"><i class="las la-envelope-open"></i> <span class="__cf_email__" data-cfemail="f195949c9eb1969c90989ddf929e9c">[email&#160;protected]</span></a></li>
+                        <li><a href="tel:129075"><i class="las la-phone-volume"></i> 123  -  456  -  7890</a></li>
+                    </ul>
+                    <div class="right__area d-flex flex-wrap align-items-center mt-3 mt-md-0">
+                        <select name="language" class="nice-select custom--scrollbar">
+                            <option>English</option>
+                        </select>
+                        <a href="dashboard.html" class="user__thumb ms-3 me-3 me-lg-0">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="container">
+                <div class="header-bottom-area">
+                    <div class="logo"><a href="index.html"><img src="{% static 'website/images/logo.png' %}" alt="logo"></a></div>
+                    <ul class="menu">
+                        <li>
+                            <a href="#0">Home</a>
+                        </li>
+                        
+                        
+              
+                    </ul>   <!-- Menu End -->
+                    {% if user.is_authenticated %}
+                        {% if user.is_business %}
+                        <a href="{% url 'business:dashboard'%}" class="cmn--btn">Dashboard</a>
+                        {% elif user.is_investor %}
+                        <a href="{% url 'investor:dashboard'%}" class="cmn--btn">Dashboard</a>                        {% endif %}
+                    {% else %}
+                    <div class="button__wrapper d-none d-lg-block">
+                        <a href="{% url 'account_signup' %}" class="cmn--btn">Register</a>
+                        <a href="{% url 'account_login'%}" class="cmn--btn">Login</a>
+                    </div>
+                    {% endif %}
+                    
+    
+                    <div class="header-trigger-wrapper d-flex d-lg-none align-items-center">
+                        <div class="mobile-nav-right d-flex align-items-center"></div>
+                        <a href="#0" class="search--btn me-4 text--base"><i class="fas fa-search"></i></a>
+                        <div class="header-trigger d-block d--none">
+                            <span></span>
+                        </div>
+                    </div>  <!-- Trigger End-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header Section Ends Here -->
+
+    <!-- Search Form Ends Here -->

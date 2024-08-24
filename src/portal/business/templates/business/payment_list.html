@@ -1,0 +1,82 @@
+{% extends 'core/base_dashboard.html' %}
+{% load static %}
+
+{% block base_title %} Payments {% endblock %}
+{% block page_heading %} Payments {% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+            <div class="card-body">
+                {% if object %}
+
+                <div class="table-responsive">
+                    <table class="table table-centered table-nowrap table-hover">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Payment Id</th>
+                            <th scope="col">Investor</th>
+                            <th scope="col">Project</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Is Paid</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for object in object %}
+                        <tr>
+
+                            <td>
+                                <p class="mb-0">
+                                    <b><a href="#">{{ object.payment_id }}</a>
+                                    </b>
+                            </td>
+                            <td>
+                                <p class="mb-0">
+                                    <b><a href="#">{{ object.project_investor.investor }}</a>
+                                    </b>
+                            </td>
+                            <td>
+                                <p class="mb-0">
+                                    <b><a href="#">{{ object.project_investor.share.project }}</a>
+                                    </b>
+                            </td>
+                            <td>
+                                <p class="mb-0">
+                                    <b><a href="#">{{ object.amount }}</a>
+                                    </b>
+                            </td>
+                            <td>
+                                        <p class="mb-0">
+                                            {% if object.project_investor.is_agree == True %}
+                                            <i class="fa fa-check text-success"></i>
+                                            {% else %}
+                                            <i class="fa fa-times text-danger"></i>
+                                            {% endif %}
+                                        </p>
+
+                                    </td>
+
+
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+
+                {% else %}
+                <p class="text-danger">
+                    <b><i class="fa fa-exclamation-circle"></i> Payments  Not found.</b>
+                </p>
+                {% endif %}
+
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}
